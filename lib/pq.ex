@@ -13,8 +13,8 @@ defmodule Heap.PQ do
 
   ## Examples
 
-    iex> Heap.PQ.empty() |> Heap.PQ.empty?()
-    true
+      iex> Heap.PQ.empty() |> Heap.PQ.empty?()
+      true
   """
   def empty() do
     new()
@@ -30,9 +30,9 @@ defmodule Heap.PQ do
   Returns a new queue with item enqueued.
 
   ## Examples
-    iex> {:ok, q, item} = Heap.PQ.empty() |> Heap.PQ.enqueue(1, -1) |> Heap.PQ.enqueue(3, -3) |> Heap.PQ.enqueue(-3, 3) |> Heap.PQ.dequeue()
-    iex> item
-    3
+      iex> {:ok, q, item} = Heap.PQ.empty() |> Heap.PQ.enqueue(1, -1) |> Heap.PQ.enqueue(3, -3) |> Heap.PQ.enqueue(-3, 3) |> Heap.PQ.dequeue()
+      iex> item
+      3
   """
   def enqueue(pq, item, priority \\ nil) do
     new(
@@ -57,9 +57,9 @@ defmodule Heap.PQ do
 
   ## Examples
 
-    iex> {:ok, q, item} = Heap.PQ.empty() |> Heap.PQ.enqueue(1, -1) |> Heap.PQ.enqueue(3, -3) |> Heap.PQ.enqueue(-3, 3) |> Heap.PQ.dequeue()
-    iex> item
-    3
+      iex> {:ok, q, item} = Heap.PQ.empty() |> Heap.PQ.enqueue(1, -1) |> Heap.PQ.enqueue(3, -3) |> Heap.PQ.enqueue(-3, 3) |> Heap.PQ.dequeue()
+      iex> item
+      3
   """
   def dequeue(pq) do
     case LeftiestTree.top(pq.tree) do

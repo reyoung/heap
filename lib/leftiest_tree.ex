@@ -16,9 +16,9 @@ defmodule Heap.LeftiestTree do
 
   ## Examples
 
-    iex> Heap.LeftiestTree.single(1, 1)
-    ...>   |> Heap.LeftiestTree.size
-    1
+      iex> Heap.LeftiestTree.single(1, 1)
+      ...>   |> Heap.LeftiestTree.size
+      1
   """
   @spec single(any, any) :: %Heap.LeftiestTree{
           item: any,
@@ -36,9 +36,9 @@ defmodule Heap.LeftiestTree do
 
   ## Examples
 
-    iex>  Heap.LeftiestTree.single(1)
-    ...>    |>  Heap.LeftiestTree.size
-    1
+      iex>  Heap.LeftiestTree.single(1)
+      ...>    |>  Heap.LeftiestTree.size
+      1
   """
   @spec single(any) :: %Heap.LeftiestTree{
           item: any,
@@ -58,9 +58,9 @@ defmodule Heap.LeftiestTree do
 
   ## Examples
 
-    iex>  Heap.LeftiestTree.single(1)
-    ...>    |>  Heap.LeftiestTree.empty?
-    false
+      iex>  Heap.LeftiestTree.single(1)
+      ...>    |>  Heap.LeftiestTree.empty?
+      false
   """
   @spec empty?(atom | %{:item => any, optional(any) => any}) :: boolean
   def empty?(nil) do
@@ -76,14 +76,14 @@ defmodule Heap.LeftiestTree do
 
   ## Examples
 
-    iex> Heap.LeftiestTree.single(1)
-    ...>   |> Heap.LeftiestTree.top
-    {:ok, %{priority: 1, item: 1}}
+      iex> Heap.LeftiestTree.single(1)
+      ...>   |> Heap.LeftiestTree.top
+      {:ok, %{priority: 1, item: 1}}
 
-    iex> Heap.LeftiestTree.single(1)
-    ...>   |> Heap.LeftiestTree.pop
-    ...>   |> Heap.LeftiestTree.top
-    {:error, "empty tree"}
+      iex> Heap.LeftiestTree.single(1)
+      ...>   |> Heap.LeftiestTree.pop
+      ...>   |> Heap.LeftiestTree.top
+      {:error, "empty tree"}
   """
   def top(tree) do
     cond do
@@ -97,15 +97,15 @@ defmodule Heap.LeftiestTree do
 
   ## Examples
 
-    iex> Heap.LeftiestTree.single(1)
-    ...>   |> Heap.LeftiestTree.pop
-    ...>   |> Heap.LeftiestTree.empty?
-    true
+      iex> Heap.LeftiestTree.single(1)
+      ...>   |> Heap.LeftiestTree.pop
+      ...>   |> Heap.LeftiestTree.empty?
+      true
 
-    iex> Heap.LeftiestTree.single(1)
-    ...>   |> Heap.LeftiestTree.pop
-    ...>   |> Heap.LeftiestTree.pop
-    nil
+      iex> Heap.LeftiestTree.single(1)
+      ...>   |> Heap.LeftiestTree.pop
+      ...>   |> Heap.LeftiestTree.pop
+      nil
   """
   def pop(tree) do
     cond do
@@ -119,12 +119,12 @@ defmodule Heap.LeftiestTree do
 
   ## Examples
 
-    iex> nil
-    ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(1))
-    ...>  |> Heap.LeftiestTree.merge(nil)
-    ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(-1))
-    ...>  |> Heap.LeftiestTree.to_list
-    [%{item: 1, priority: 1}, %{item: -1, priority: -1}]
+      iex> nil
+      ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(1))
+      ...>  |> Heap.LeftiestTree.merge(nil)
+      ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(-1))
+      ...>  |> Heap.LeftiestTree.to_list
+      [%{item: 1, priority: 1}, %{item: -1, priority: -1}]
   """
   def merge(tree1, tree2) do
     cond do
@@ -147,11 +147,11 @@ defmodule Heap.LeftiestTree do
 
   ## Examples
 
-    iex> nil |> Heap.LeftiestTree.size
-    0
+      iex> nil |> Heap.LeftiestTree.size
+      0
 
-    iex> Heap.LeftiestTree.single(1) |> Heap.LeftiestTree.size
-    1
+      iex> Heap.LeftiestTree.single(1) |> Heap.LeftiestTree.size
+      1
   """
   def size(tree) do
     size_impl(tree, 0)
@@ -209,12 +209,12 @@ defmodule Heap.LeftiestTree do
 
   ## Examples
 
-    iex> Heap.LeftiestTree.single(-10)
-    ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(1))
-    ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(3))
-    ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(-1))
-    ...>  |> Heap.LeftiestTree.to_list
-    [%{item: 3, priority: 3}, %{item: 1, priority: 1}, %{item: -1, priority: -1}, %{item: -10, priority: -10}]
+      iex> Heap.LeftiestTree.single(-10)
+      ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(1))
+      ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(3))
+      ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(-1))
+      ...>  |> Heap.LeftiestTree.to_list
+      [%{item: 3, priority: 3}, %{item: 1, priority: 1}, %{item: -1, priority: -1}, %{item: -10, priority: -10}]]
   """
   def to_list(tree) do
     to_list_impl(tree, [])
