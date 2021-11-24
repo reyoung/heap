@@ -10,7 +10,8 @@ defmodule Heap.MixProject do
       deps: deps(),
       name: "Heap",
       source_url: "https://github.com/reyoung/heap.git",
-      description: "A flexible implementation of custom-priority heap/priority queue based on the leftist-heaps",
+      description:
+        "A flexible implementation of custom-priority heap/priority queue based on the leftist-heaps",
       package: package()
     ]
   end

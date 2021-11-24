@@ -13,6 +13,12 @@ defmodule Heap.LeftiestTree do
 
   @doc """
   Returns a single node leftiest tree, with item and priority.
+
+  ## Examples
+
+    iex> Heap.LeftiestTree.single(1, 1)
+    ...>   |> Heap.LeftiestTree.size
+    1
   """
   @spec single(any, any) :: %Heap.LeftiestTree{
           item: any,
@@ -26,7 +32,13 @@ defmodule Heap.LeftiestTree do
   end
 
   @doc """
-  Returns a single node leftest tree, with item and use this item as priority.
+  Returns a single node leftest tree, with item and use  this item as priority.
+
+  ## Examples
+
+    iex>  Heap.LeftiestTree.single(1)
+    ...>    |>  Heap.LeftiestTree.size
+    1
   """
   @spec single(any) :: %Heap.LeftiestTree{
           item: any,
@@ -41,7 +53,14 @@ defmodule Heap.LeftiestTree do
 
   @doc """
   Returns true if the leftest tree is empty.
+
   NOTE: the nil is an empty leftest tree also.
+
+  ## Examples
+
+    iex>  Heap.LeftiestTree.single(1)
+    ...>    |>  Heap.LeftiestTree.empty?
+    false
   """
   @spec empty?(atom | %{:item => any, optional(any) => any}) :: boolean
   def empty?(nil) do
@@ -53,9 +72,18 @@ defmodule Heap.LeftiestTree do
   end
 
   @doc """
-  Returns the top node of tree.
-  If the tree is empty, returns {:error, "empty tree"}
-  Else returns {:ok, %{priority: ..., item: ...}}
+  Returns the top node of tree. If the tree is empty, returns {:error, "empty tree"}, otherwise returns {:ok, %{priority: ..., item: ...}}
+
+  ## Examples
+
+    iex> Heap.LeftiestTree.single(1)
+    ...>   |> Heap.LeftiestTree.top
+    {:ok, %{priority: 1, item: 1}}
+
+    iex> Heap.LeftiestTree.single(1)
+    ...>   |> Heap.LeftiestTree.pop
+    ...>   |> Heap.LeftiestTree.top
+    {:error, "empty tree"}
   """
   def top(tree) do
     cond do
@@ -65,8 +93,19 @@ defmodule Heap.LeftiestTree do
   end
 
   @doc """
-  Removes the topest node of tree, rebalances the tree, and returns.
-  Do nothing if tree is empty.
+  Removes the topest node of tree, rebalances the tree, and returns. Do nothing if tree is empty.
+
+  ## Examples
+
+    iex> Heap.LeftiestTree.single(1)
+    ...>   |> Heap.LeftiestTree.pop
+    ...>   |> Heap.LeftiestTree.empty?
+    true
+
+    iex> Heap.LeftiestTree.single(1)
+    ...>   |> Heap.LeftiestTree.pop
+    ...>   |> Heap.LeftiestTree.pop
+    nil
   """
   def pop(tree) do
     cond do
@@ -77,6 +116,15 @@ defmodule Heap.LeftiestTree do
 
   @doc """
   Merges two leftiest trees into a leftiest tree.
+
+  ## Examples
+
+    iex> nil
+    ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(1))
+    ...>  |> Heap.LeftiestTree.merge(nil)
+    ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(-1))
+    ...>  |> Heap.LeftiestTree.to_list
+    [%{item: 1, priority: 1}, %{item: -1, priority: -1}]
   """
   def merge(tree1, tree2) do
     cond do
@@ -96,6 +144,14 @@ defmodule Heap.LeftiestTree do
 
   @doc """
   Returns the number of elements in tree.
+
+  ## Examples
+
+    iex> nil |> Heap.LeftiestTree.size
+    0
+
+    iex> Heap.LeftiestTree.single(1) |> Heap.LeftiestTree.size
+    1
   """
   def size(tree) do
     size_impl(tree, 0)
@@ -150,6 +206,15 @@ defmodule Heap.LeftiestTree do
 
   @doc """
   Returns the list of %{priority: ..., item:, ...} ordered by priority descendingly.
+
+  ## Examples
+
+    iex> Heap.LeftiestTree.single(-10)
+    ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(1))
+    ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(3))
+    ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(-1))
+    ...>  |> Heap.LeftiestTree.to_list
+    [%{item: 3, priority: 3}, %{item: 1, priority: 1}, %{item: -1, priority: -1}, %{item: -10, priority: -10}]
   """
   def to_list(tree) do
     to_list_impl(tree, [])

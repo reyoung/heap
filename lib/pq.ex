@@ -10,6 +10,11 @@ defmodule Heap.PQ do
 
   @doc """
   Returns an empty priority queue.
+
+  ## Examples
+
+    iex> Heap.PQ.empty() |> Heap.PQ.empty?()
+    true
   """
   def empty() do
     new()
@@ -20,10 +25,14 @@ defmodule Heap.PQ do
   end
 
   @doc """
-  Enqueue an item into queue with optional priority.
-  If priority is not set, the item itself is considered as the priority.
+  Enqueue an item into queue with optional priority. If priority is not set, the item itself is considered as the priority.
 
   Returns a new queue with item enqueued.
+
+  ## Examples
+    iex> {:ok, q, item} = Heap.PQ.empty() |> Heap.PQ.enqueue(1, -1) |> Heap.PQ.enqueue(3, -3) |> Heap.PQ.enqueue(-3, 3) |> Heap.PQ.dequeue()
+    iex> item
+    3
   """
   def enqueue(pq, item, priority \\ nil) do
     new(
@@ -44,7 +53,13 @@ defmodule Heap.PQ do
   @doc """
   Dequeue and pick the smallest priority item.
 
-  If everything is ok, it returns {:ok, new_queue, picked_item}, otherwise it returns {:error, reason}
+  If everything is ok, it returns {:ok, new_queue, picked_item}, otherwise it returns {:error, reason}.
+
+  ## Examples
+
+    iex> {:ok, q, item} = Heap.PQ.empty() |> Heap.PQ.enqueue(1, -1) |> Heap.PQ.enqueue(3, -3) |> Heap.PQ.enqueue(-3, 3) |> Heap.PQ.dequeue()
+    iex> item
+    3
   """
   def dequeue(pq) do
     case LeftiestTree.top(pq.tree) do
