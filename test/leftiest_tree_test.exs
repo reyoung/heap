@@ -1,0 +1,19 @@
+defmodule Heap.LeftiestTreeTest do
+  use ExUnit.Case
+  doctest Heap.LeftiestTree
+
+  alias Heap.LeftiestTree
+
+  test "merge" do
+    t =
+      LeftiestTree.single(1)
+      |> LeftiestTree.merge(LeftiestTree.single(2))
+      |> LeftiestTree.merge(LeftiestTree.single(-1))
+      |> LeftiestTree.merge(LeftiestTree.single(7))
+      |> LeftiestTree.merge(LeftiestTree.single(-3))
+      |> LeftiestTree.merge(LeftiestTree.single(2))
+      |> LeftiestTree.merge(LeftiestTree.single(-1))
+
+    assert LeftiestTree.size(t) == 7
+  end
+end
