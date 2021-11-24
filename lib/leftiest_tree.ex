@@ -2,7 +2,7 @@ defmodule Heap.LeftiestTree do
   @moduledoc """
   A leftiest tree/heap implemtation with customizable priority and any type of item.
 
-  This tree always enforces the lowest priority at the top node, and the left path of tree is higher than right.
+  This tree always enforces the smallest priority at the top node, and the left path of tree is higher than right.
   See https://en.wikipedia.org/wiki/Leftist_tree for algorithm details.
 
   """
@@ -148,18 +148,19 @@ defmodule Heap.LeftiestTree do
     end
   end
 
+  @doc """
+  Returns the list of %{priority: ..., item:, ...} ordered by priority descendingly.
+  """
   def to_list(tree) do
     to_list_impl(tree, [])
   end
 
   defp to_list_impl(tree, acc) do
-    top_elem = top(tree)
-
-    case top_elem do
-      nil ->
+    case top(tree) do
+      {:error, _} ->
         acc
 
-      _ ->
+      {:ok, top_elem} ->
         sub_tree = merge(tree.left, tree.right)
         to_list_impl(sub_tree, [top_elem | acc])
     end

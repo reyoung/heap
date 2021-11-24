@@ -4,7 +4,7 @@ defmodule Heap.LeftiestTreeTest do
 
   alias Heap.LeftiestTree
 
-  test "merge" do
+  test "tree" do
     t =
       LeftiestTree.single(1)
       |> LeftiestTree.merge(LeftiestTree.single(2))
@@ -15,5 +15,8 @@ defmodule Heap.LeftiestTreeTest do
       |> LeftiestTree.merge(LeftiestTree.single(-1))
 
     assert LeftiestTree.size(t) == 7
+
+    items = t |> LeftiestTree.to_list() |> Enum.map(& &1.item)
+    assert [7, 2, 2, 1, -1, -1, -3] == items
   end
 end

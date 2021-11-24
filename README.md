@@ -1,21 +1,5 @@
-# Heap
+# A flexible implementation of custom-priority heap/priority queue based on the leftist-heaps.
 
-**TODO: Add description**
+The `Heap.LeftiestTree` implements a simple minimum priority heap. You can customize the priority value for each item to implements a maximum heap.
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `heap` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:heap, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/heap](https://hexdocs.pm/heap).
-
+The `Heap.PQ` uses `Heap.LeftiestTree` and implements a simple priority queue.
