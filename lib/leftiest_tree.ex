@@ -214,7 +214,7 @@ defmodule Heap.LeftiestTree do
       ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(3))
       ...>  |> Heap.LeftiestTree.merge(Heap.LeftiestTree.single(-1))
       ...>  |> Heap.LeftiestTree.to_list
-      [%{item: 3, priority: 3}, %{item: 1, priority: 1}, %{item: -1, priority: -1}, %{item: -10, priority: -10}]]
+      [%{item: 3, priority: 3}, %{item: 1, priority: 1}, %{item: -1, priority: -1}, %{item: -10, priority: -10}]
   """
   def to_list(tree) do
     to_list_impl(tree, [])
